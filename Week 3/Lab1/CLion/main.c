@@ -3,18 +3,16 @@
 #include <string.h>
 #include <inttypes.h>
 #include <errno.h>
-#include"guesser.h"
 
 int subStrIndex(char *pSub, char *pStr);
-void** getUserInfo(char *pUser, char *pStr);
+char* getUserInfo(char *pUser, char *pStr);
 int lineLength(int index, char *pStr);
-int getInput(char *inputBuffer, int bufferLength);
+char* getInput(char *inputBuffer, int bufferLength);
 
 int main()
 {
     FILE *pFile;
-    char fileName[200] = "C:\\Users\\Almania\\CLionProjects\\untitled\\answers.txt";
-
+    char fileName[200] = "C:\\Users\\Almania\\Documents\\WOU\\CS363\\Week 3\\Lab1\\CLion\\answers.txt";
 
     //a pointer to store the user name
     char *pUserName = malloc(10);
@@ -27,9 +25,6 @@ int main()
     /*we only allocate 30 bytes for the user guess since it doesn't need to be that large
       if the user enters a number any larger than that, we will terminate the program*/
     int *pUserGuessNumber = malloc(sizeof(int) * 30);
-
-    //a void double pointer to hold the user name and number from the file
-    void **pUserInfo = malloc(200);
 
     /*opening the file*/
     pFile = fopen(fileName, "r");
@@ -56,7 +51,6 @@ int main()
 
     //make sure user is not inputting large user names
     printf("What is your name? ");
-    guess();
     while(getInput(pUserName, 10) == -1)
     {
         fputs("The input is too long try again!", stdout);
@@ -64,17 +58,18 @@ int main()
 
     //make sure user isn't inputting numbers that are too large
     printf("What is the magic number %s? ", pUserName);
-    while(getInput(pUserGuessNumber, 10) == -1)
+    scanf(" %d", pUserGuessNumber);
+    /*while(getInput(pUserGuessNumber, 10) == -1)
     {
         fputs("The number is too large, 10 digits max", stdout);
-    }
+    }*/
 
     //if the user is in the file, then set the magic number to be from the file
     int userNameIndex = subStrIndex(pUserName, pFileStr);
     if(userNameIndex > -1)
     {
-        pUserInfo = getUserInfo(pUserName, pFileStr);
-        magicNumber = strtoumax(pUserInfo[1], NULL, 10);
+
+        magicNumber = strtoumax(getUserInfo(pUserName, pFileStr), NULL, 10);
     }
 
     //if we couldn't get the magic number from the file then we set it back to the default
@@ -92,7 +87,7 @@ int main()
 
 
 /**Checks to see if the user has input the right amount*/
-int getInput(char *inputBuffer, int bufferLength)
+char* getInput(char *inputBuffer, int bufferLength)
 {
     fgets(inputBuffer, bufferLength, stdin);
     //if the input has overwritten the \n value, then we return a -1 to indicate invalid input
@@ -120,12 +115,9 @@ int subStrIndex(char *pSub, char *pStr)
     int i = 0;
     int subStart = 0;
     int subCur = 0;
-    int strLength = strlen(pStr);
-    char c;
 
     for(i; i < strlen(pStr); i++)
     {
-        char c = pStr[i];
         if(pSub[subCur] == pStr[i])
         {
             subStart = i;
@@ -145,21 +137,17 @@ int subStrIndex(char *pSub, char *pStr)
 }
 
 
-void** getUserInfo(char *pUser, char *pStr)
+char* getUserInfo(char *pUser, char *pStr)
 {
-    char *pUserName = malloc(30);
     char *pNumber = malloc(30);
     int i = subStrIndex(pUser, pStr);
     int strLength = lineLength(subStrIndex(pUser, pStr), pStr) + i;
     int tempIndex = 0;
     int tab = 9;
     int space = 32;
-    char c;
 
     while(pStr[i] != tab && pStr[i] != space)
     {
-        c = pStr[i];
-        pUserName[tempIndex] = pStr[i];
         i = i + 1;
         tempIndex = tempIndex + 1;
     }
@@ -167,15 +155,12 @@ void** getUserInfo(char *pUser, char *pStr)
     tempIndex = 0;
     for(i; i < strLength; i++)
     {
-        c = pStr[i];
         pNumber[tempIndex] = pStr[i];
         tempIndex = tempIndex + 1;
     }
     pNumber[tempIndex] = '\r';
 
-    void **pUserInfo = pUserName;
-    pUserInfo[1] = pNumber;
-    return pUserInfo;
+    return pNumber;
 }
 
 int lineLength(int index, char *pStr)

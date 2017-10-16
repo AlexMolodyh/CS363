@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Almania/Documents/WOU/cs363/Week 3/Lab1/CLion
+# Install script for directory: C:/Users/Almania/Documents/WOU/CS363/Week 3/Lab1/CLion
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Almania/Documents/WOU/cs363/Week 3/Lab1/CLion/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Almania/Documents/WOU/CS363/Week 3/Lab1/CLion/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

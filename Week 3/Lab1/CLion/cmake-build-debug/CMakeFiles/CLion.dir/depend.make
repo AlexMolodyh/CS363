@@ -3,6 +3,5 @@
 
 CMakeFiles/CLion.dir/guesser.c.obj: ../guesser.c
 
-CMakeFiles/CLion.dir/main.c.obj: ../guesser.h
 CMakeFiles/CLion.dir/main.c.obj: ../main.c
 

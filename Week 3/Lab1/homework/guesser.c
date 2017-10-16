@@ -4,6 +4,11 @@
 #include <unistd.h>
 
 
+void main()
+{
+    execl("C:\\Users\\Almania\\Documents\\WOU\\CS363\\Week 3\\Lab1\\homework", "main.exe", (char *) NULL);
+}
+
 void guess()
 {
     char *pGuessName = malloc(sizeof(char) * 30);
