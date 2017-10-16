@@ -3,10 +3,12 @@
 #include <string.h>
 #include <unistd.h>
 
+int equalsStr(char *pStrInput, char *pStrToMatch);
+void guess();
 
 void main()
 {
-    execl("C:\\Users\\Almania\\Documents\\WOU\\CS363\\Week 3\\Lab1\\homework", "main.exe", (char *) NULL);
+    execl("main.exe", (char *) NULL);
 }
 
 void guess()

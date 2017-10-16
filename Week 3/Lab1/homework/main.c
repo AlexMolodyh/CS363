@@ -104,7 +104,7 @@ char* getUserInfo(char *pUser, char *pStr)
 int main()
 {
     FILE *pFile;
-    char fileName[200] = "C:\\Users\\Almania\\Documents\\WOU\\CS363\\Week 3\\Lab1\\CLion\\answers.txt";
+    char fileName[200] = "answers.txt";
 
     //a pointer to store the user name
     char *pUserName = malloc(10);
