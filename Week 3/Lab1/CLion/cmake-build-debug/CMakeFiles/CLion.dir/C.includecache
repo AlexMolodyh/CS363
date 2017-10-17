@@ -6,17 +6,7 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Almania/Documents/WOU/CS363/Week 3/Lab1/CLion/guesser.c
-stdio.h
--
-stdlib.h
--
-string.h
--
-unistd.h
--
-
-C:/Users/Almania/Documents/WOU/CS363/Week 3/Lab1/CLion/main.c
+C:/Users/Almania/Documents/WOU/cs363/Week 3/Lab1/Clion/main.c
 stdio.h
 -
 stdlib.h

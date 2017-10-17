@@ -1,7 +1,7 @@
-set(CMAKE_CXX_COMPILER "G:/MinGW/bin/g++.exe")
+set(CMAKE_CXX_COMPILER "C:/MinGW/gcc-7.1.0.win32/bin/g++.exe")
 set(CMAKE_CXX_COMPILER_ARG1 "")
 set(CMAKE_CXX_COMPILER_ID "GNU")
-set(CMAKE_CXX_COMPILER_VERSION "6.3.0")
+set(CMAKE_CXX_COMPILER_VERSION "7.1.0")
 set(CMAKE_CXX_COMPILER_WRAPPER "")
 set(CMAKE_CXX_STANDARD_COMPUTED_DEFAULT "14")
 set(CMAKE_CXX_COMPILE_FEATURES "cxx_std_98;cxx_template_template_parameters;cxx_std_11;cxx_alias_templates;cxx_alignas;cxx_alignof;cxx_attributes;cxx_auto_type;cxx_constexpr;cxx_decltype;cxx_decltype_incomplete_return_types;cxx_default_function_template_args;cxx_defaulted_functions;cxx_defaulted_move_initializers;cxx_delegating_constructors;cxx_deleted_functions;cxx_enum_forward_declarations;cxx_explicit_conversions;cxx_extended_friend_declarations;cxx_extern_templates;cxx_final;cxx_func_identifier;cxx_generalized_initializers;cxx_inheriting_constructors;cxx_inline_namespaces;cxx_lambdas;cxx_local_type_template_args;cxx_long_long_type;cxx_noexcept;cxx_nonstatic_member_init;cxx_nullptr;cxx_override;cxx_range_for;cxx_raw_string_literals;cxx_reference_qualified_functions;cxx_right_angle_brackets;cxx_rvalue_references;cxx_sizeof_member;cxx_static_assert;cxx_strong_enums;cxx_thread_local;cxx_trailing_return_types;cxx_unicode_literals;cxx_uniform_initialization;cxx_unrestricted_unions;cxx_user_literals;cxx_variadic_macros;cxx_variadic_templates;cxx_std_14;cxx_aggregate_default_initializers;cxx_attribute_deprecated;cxx_binary_literals;cxx_contextual_conversions;cxx_decltype_auto;cxx_digit_separators;cxx_generic_lambdas;cxx_lambda_init_captures;cxx_relaxed_constexpr;cxx_return_type_deduction;cxx_variable_templates;cxx_std_17")
@@ -14,9 +14,9 @@ set(CMAKE_CXX_PLATFORM_ID "MinGW")
 set(CMAKE_CXX_SIMULATE_ID "")
 set(CMAKE_CXX_SIMULATE_VERSION "")
 
-set(CMAKE_AR "G:/MinGW/bin/ar.exe")
-set(CMAKE_RANLIB "G:/MinGW/bin/ranlib.exe")
-set(CMAKE_LINKER "G:/MinGW/bin/ld.exe")
+set(CMAKE_AR "C:/MinGW/gcc-7.1.0.win32/bin/ar.exe")
+set(CMAKE_RANLIB "C:/MinGW/gcc-7.1.0.win32/bin/ranlib.exe")
+set(CMAKE_LINKER "C:/MinGW/gcc-7.1.0.win32/bin/ld.exe")
 set(CMAKE_COMPILER_IS_GNUCXX 1)
 set(CMAKE_CXX_COMPILER_LOADED 1)
 set(CMAKE_CXX_COMPILER_WORKS TRUE)
@@ -40,7 +40,7 @@ set(CMAKE_CXX_LINKER_PREFERENCE 30)
 set(CMAKE_CXX_LINKER_PREFERENCE_PROPAGATES 1)
 
 # Save compiler ABI information.
-set(CMAKE_CXX_SIZEOF_DATA_PTR "4")
+set(CMAKE_CXX_SIZEOF_DATA_PTR "8")
 set(CMAKE_CXX_COMPILER_ABI "")
 set(CMAKE_CXX_LIBRARY_ARCHITECTURE "")
 
@@ -65,6 +65,6 @@ endif()
 
 
 
-set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++;mingw32;moldname;mingwex;msvcrt;advapi32;shell32;user32;kernel32;mingw32;moldname;mingwex;msvcrt")
-set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "G:/MinGW/lib/gcc/mingw32/6.3.0;G:/MinGW/lib/gcc;G:/MinGW/mingw32/lib;G:/MinGW/lib")
+set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++;mingw32;moldname;mingwex;msvcrt;advapi32;shell32;user32;kernel32;iconv;mingw32;moldname;mingwex;msvcrt")
+set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "C:/MinGW/gcc-7.1.0.win32/lib/gcc/x86_64-w64-mingw32/7.1.0;C:/MinGW/gcc-7.1.0.win32/lib/gcc;C:/MinGW/gcc-7.1.0.win32/x86_64-w64-mingw32/lib;C:/MinGW/gcc-7.1.0.win32/lib")
 set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

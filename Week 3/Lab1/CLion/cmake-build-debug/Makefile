@@ -38,19 +38,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\CLion\bin\cmake\bin\cmake.exe"
+CMAKE_COMMAND = "G:\Program Files\CLion-2017.2.2\bin\cmake\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\CLion\bin\cmake\bin\cmake.exe" -E remove -f
+RM = "G:\Program Files\CLion-2017.2.2\bin\cmake\bin\cmake.exe" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion"
+CMAKE_SOURCE_DIR = "C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\cmake-build-debug"
+CMAKE_BINARY_DIR = "C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion\cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -58,7 +58,7 @@ CMAKE_BINARY_DIR = "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\cmake
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\CLion\bin\cmake\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"G:\Program Files\CLion-2017.2.2\bin\cmake\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -69,7 +69,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\CLion\bin\cmake\bin\cmake.exe" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"G:\Program Files\CLion-2017.2.2\bin\cmake\bin\cmake.exe" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\cmake-build-debug\CMakeFiles" "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\cmake-build-debug\CMakeFiles\progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion\cmake-build-debug\CMakeFiles" "C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion\cmake-build-debug\CMakeFiles\progress.marks"
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\cmake-build-debug\CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion\cmake-build-debug\CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -110,44 +110,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named CLion
+# Target rules for targets named Clion
 
 # Build rule for target.
-CLion: cmake_check_build_system
-	$(MAKE) -f CMakeFiles\Makefile2 CLion
-.PHONY : CLion
+Clion: cmake_check_build_system
+	$(MAKE) -f CMakeFiles\Makefile2 Clion
+.PHONY : Clion
 
 # fast build rule for target.
-CLion/fast:
-	$(MAKE) -f CMakeFiles\CLion.dir\build.make CMakeFiles/CLion.dir/build
-.PHONY : CLion/fast
-
-guesser.obj: guesser.c.obj
-
-.PHONY : guesser.obj
-
-# target to build an object file
-guesser.c.obj:
-	$(MAKE) -f CMakeFiles\CLion.dir\build.make CMakeFiles/CLion.dir/guesser.c.obj
-.PHONY : guesser.c.obj
-
-guesser.i: guesser.c.i
-
-.PHONY : guesser.i
-
-# target to preprocess a source file
-guesser.c.i:
-	$(MAKE) -f CMakeFiles\CLion.dir\build.make CMakeFiles/CLion.dir/guesser.c.i
-.PHONY : guesser.c.i
-
-guesser.s: guesser.c.s
-
-.PHONY : guesser.s
-
-# target to generate assembly for a file
-guesser.c.s:
-	$(MAKE) -f CMakeFiles\CLion.dir\build.make CMakeFiles/CLion.dir/guesser.c.s
-.PHONY : guesser.c.s
+Clion/fast:
+	$(MAKE) -f CMakeFiles\Clion.dir\build.make CMakeFiles/Clion.dir/build
+.PHONY : Clion/fast
 
 main.obj: main.c.obj
 
@@ -155,7 +128,7 @@ main.obj: main.c.obj
 
 # target to build an object file
 main.c.obj:
-	$(MAKE) -f CMakeFiles\CLion.dir\build.make CMakeFiles/CLion.dir/main.c.obj
+	$(MAKE) -f CMakeFiles\Clion.dir\build.make CMakeFiles/Clion.dir/main.c.obj
 .PHONY : main.c.obj
 
 main.i: main.c.i
@@ -164,7 +137,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) -f CMakeFiles\CLion.dir\build.make CMakeFiles/CLion.dir/main.c.i
+	$(MAKE) -f CMakeFiles\Clion.dir\build.make CMakeFiles/Clion.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -173,7 +146,7 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) -f CMakeFiles\CLion.dir\build.make CMakeFiles/CLion.dir/main.c.s
+	$(MAKE) -f CMakeFiles\Clion.dir\build.make CMakeFiles/Clion.dir/main.c.s
 .PHONY : main.c.s
 
 # Help Target
@@ -182,12 +155,9 @@ help:
 	@echo ... all (the default if no target is provided)
 	@echo ... clean
 	@echo ... depend
-	@echo ... CLion
+	@echo ... Clion
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... guesser.obj
-	@echo ... guesser.i
-	@echo ... guesser.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
