@@ -3,14 +3,15 @@
 #include <string.h>
 #include <inttypes.h>
 #include <errno.h>
-
+#include <sys/shm.h>
+#include <sys/stat.h>
 
 /**Checks to see if the user has input the right amount*/
 int getInput(char *inputBuffer, int bufferLength)
 {
     fgets(inputBuffer, bufferLength, stdin);
     //if the input has overwritten the \n value, then we return a -1 to indicate invalid input
-    if (inputBuffer[strlen(inputBuffer) -1] != '\n')
+    if (inputBuffer[strlen(inputBuffer) - 1] != '\n')
     {
         int overflow = 0;
         while (fgetc(stdin) != '\n')
@@ -19,15 +20,14 @@ int getInput(char *inputBuffer, int bufferLength)
         // if they input exactly (bufferLength - 1)
         // characters, there's only the \n to chop off
         if (overflow > 0)
-            return - 1;
+            return -1;
     }
-    else//otherwise everything went smoothly
+    else //otherwise everything went smoothly
     {
-        inputBuffer[strlen(inputBuffer) -1] = '\0';
+        inputBuffer[strlen(inputBuffer) - 1] = '\0';
         return 1;
     }
 }
-
 
 int subStrIndex(char *pSub, char *pStr)
 {
@@ -35,16 +35,16 @@ int subStrIndex(char *pSub, char *pStr)
     int subStart = 0;
     int subCur = 0;
 
-    for(i; i < strlen(pStr); i++)
+    for (i; i < strlen(pStr); i++)
     {
-        if(pSub[subCur] == pStr[i])
+        if (pSub[subCur] == pStr[i])
         {
             subStart = i;
             int j = subCur;
             int subLength = strlen(pSub);
-            for(j; j < subLength; j++)
+            for (j; j < subLength; j++)
             {
-                if(pSub[j] != pStr[j])
+                if (pSub[j] != pStr[j])
                 {
                     j = subLength;
                 }
@@ -61,9 +61,9 @@ int lineLength(int index, char *pStr)
     int i = index;
     int returnLength = 0;
     int newLine = 10;
-    for(i; i < strLength; i++)
+    for (i; i < strLength; i++)
     {
-        if(pStr[i] == newLine)
+        if (pStr[i] == newLine)
             return returnLength;
         else
             returnLength = returnLength + 1;
@@ -71,8 +71,7 @@ int lineLength(int index, char *pStr)
     return returnLength;
 }
 
-
-char* getUserInfo(char *pUser, char *pStr)
+char *getUserInfo(char *pUser, char *pStr)
 {
     char *pNumber = malloc(30);
     int i = subStrIndex(pUser, pStr);
@@ -82,14 +81,14 @@ char* getUserInfo(char *pUser, char *pStr)
     int tab = 9;
     int space = 32;
 
-    while(pStr[i] != tab && pStr[i] != space)
+    while (pStr[i] != tab && pStr[i] != space)
     {
         i = i + 1;
         tempIndex = tempIndex + 1;
     }
     i = i + 1;
     tempIndex = 0;
-    for(i; i < strLen; i++)
+    for (i; i < strLen; i++)
     {
         pNumber[tempIndex] = pStr[i];
         tempIndex = tempIndex + 1;
@@ -99,95 +98,133 @@ char* getUserInfo(char *pUser, char *pStr)
     return pNumber;
 }
 
-
-
 int main()
 {
-    FILE *pFile;
-    char fileName[200] = "C:\\Users\\Almania\\Documents\\WOU\\CS363\\Week 3\\Lab1\\CLion\\answers.txt";
+    FILE *output;
+    
+      output = popen ("more", "w");
+      if (!output)
+        {
+          fprintf (stderr,
+                   "incorrect parameters or too many files.\n");
+          return EXIT_FAILURE;
+        }
+      write_data (output);
+      if (pclose (output) != 0)
+        {
+          fprintf (stderr,
+                   "Could not run more or other error.\n");
+        }
 
-    //a pointer to store the user name
-    char *pUserName = malloc(10);
 
-    int defaultNumber = 12345;
+    // key_t shm_key = 6166529;
+    // const int shm_size = 1024;
 
-    //used to convert user magic number from file
-    uintmax_t magicNumber = defaultNumber;
+    // int shm_id;
+    // char *shmaddr = malloc(300);
+    // char *ptr = malloc(300);
+    // int next[20];
 
-    /*we only allocate 30 bytes for the user guess since it doesn't need to be that large
-      if the user enters a number any larger than that, we will terminate the program*/
-    int *pUserGuessNumber = malloc(sizeof(int) * 30);
+    // printf("writer started.\n");
 
-    /*opening the file*/
-    pFile = fopen(fileName, "r");
-    if (pFile == NULL) {
-        printf("Couldn't open the file %s.", fileName);
-        exit(0);
-    }
+    // /* Allocate a shared memory segment. */
+    // shm_id = shmget(shm_key, shm_size, IPC_CREAT | S_IRUSR | S_IWUSR);
 
-    //get the size of the file
-    fseek(pFile, 0, SEEK_END);
-    int fileSize = ftell(pFile);
-    rewind(pFile);
+    // /* Attach the shared memory segment. */
+    // shmaddr = (char *)shmat(shm_id, 0, 0);
 
-    char fileC = fgetc(pFile);//a single char from the file
-    char *pFileStr = malloc(fileSize);//the file content will be stored in this string
-    int index = 0;
-    //append all of the file characters to the string
-    while (fileC != EOF) {
-        pFileStr[index] = fileC;
-        index = index + 1;
-        fileC = fgetc(pFile);
-    }
-    fclose(pFile);
+    // printf("Shared memory address is %p\n", (shmaddr + sizeof(next)));
 
-    //make sure user is not inputting large user names
-    printf("What is your name? ");
-    while(getInput(pUserName, 10) == -1)
-    {
-        fputs("The input is too long try again!", stdout);
-    }
+    // /* Start to write data. */
+    // ptr = shmaddr;
+    // next[0] = sprintf(ptr, "mandy") + 1;
+    // printf("next[0] is %d\n", next[0]);
+    // ptr += next[0];
+    // next[1] = sprintf(ptr, "73453916") + 1;
+    // ptr += next[1];
+    // sprintf(ptr, "amarica");
+    // memcpy(shmaddr, &next, sizeof(next));
+    // printf("writer ended.\n");
 
-    //make sure user isn't inputting numbers that are too large
-    printf("What is the magic number %s? ", pUserName);
-    scanf(" %d", pUserGuessNumber);
-    /*while(getInput(pUserGuessNumber, 10) == -1)
-    {
-        fputs("The number is too large, 10 digits max", stdout);
-    }*/
+    /*calling the other process*/
+    // system("./read");
 
-    //if the user is in the file, then set the magic number to be from the file
-    int userNameIndex = subStrIndex(pUserName, pFileStr);
-    if(userNameIndex > -1)
-    {
-        magicNumber = strtoumax(getUserInfo(pUserName, pFileStr), NULL, 10);
-    }
+    // /* Detach the shared memory segment. */
+    // shmdt(shmaddr);
+    // /* Deallocate the shared memory segment.*/
+    // shmctl(shm_id, IPC_RMID, 0);
 
-    //if we couldn't get the magic number from the file then we set it back to the default
-    if(magicNumber == UINTMAX_MAX && errno == ERANGE)
-    {
-        magicNumber = defaultNumber;
-    }
-    if(magicNumber > *pUserGuessNumber)
-        printf("TOO LOW");
-    else if(magicNumber < *pUserGuessNumber)
-        printf("TOO HIGH");
-    else
-        printf("SUCCESS");
+    //////////////////////////////////////////////////////////////////////
+
+    // FILE *pFile;
+    // char fileName[200] = "C:\\Users\\Almania\\Documents\\WOU\\CS363\\Week 3\\Lab1\\CLion\\answers.txt";
+
+    // //a pointer to store the user name
+    // char *pUserName = malloc(10);
+
+    // int defaultNumber = 12345;
+
+    // //used to convert user magic number from file
+    // uintmax_t magicNumber = defaultNumber;
+
+    // /*we only allocate 30 bytes for the user guess since it doesn't need to be that large
+    //   if the user enters a number any larger than that, we will terminate the program*/
+    // int *pUserGuessNumber = malloc(sizeof(int) * 30);
+
+    // /*opening the file*/
+    // pFile = fopen(fileName, "r");
+    // if (pFile == NULL) {
+    //     printf("Couldn't open the file %s.", fileName);
+    //     exit(0);
+    // }
+
+    // //get the size of the file
+    // fseek(pFile, 0, SEEK_END);
+    // int fileSize = ftell(pFile);
+    // rewind(pFile);
+
+    // char fileC = fgetc(pFile);//a single char from the file
+    // char *pFileStr = malloc(fileSize);//the file content will be stored in this string
+    // int index = 0;
+    // //append all of the file characters to the string
+    // while (fileC != EOF) {
+    //     pFileStr[index] = fileC;
+    //     index = index + 1;
+    //     fileC = fgetc(pFile);
+    // }
+    // fclose(pFile);
+
+    // //make sure user is not inputting large user names
+    // printf("What is your name? ");
+    // while(getInput(pUserName, 10) == -1)
+    // {
+    //     fputs("The input is too long try again!", stdout);
+    // }
+
+    // //make sure user isn't inputting numbers that are too large
+    // printf("What is the magic number %s? ", pUserName);
+    // scanf(" %d", pUserGuessNumber);
+    // /*while(getInput(pUserGuessNumber, 10) == -1)
+    // {
+    //     fputs("The number is too large, 10 digits max", stdout);
+    // }*/
+
+    // //if the user is in the file, then set the magic number to be from the file
+    // int userNameIndex = subStrIndex(pUserName, pFileStr);
+    // if(userNameIndex > -1)
+    // {
+    //     magicNumber = strtoumax(getUserInfo(pUserName, pFileStr), NULL, 10);
+    // }
+
+    // //if we couldn't get the magic number from the file then we set it back to the default
+    // if(magicNumber == UINTMAX_MAX && errno == ERANGE)
+    // {
+    //     magicNumber = defaultNumber;
+    // }
+    // if(magicNumber > *pUserGuessNumber)
+    //     printf("TOO LOW");
+    // else if(magicNumber < *pUserGuessNumber)
+    //     printf("TOO HIGH");
+    // else
+    //     printf("SUCCESS");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

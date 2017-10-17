@@ -6,7 +6,21 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Almania/Documents/WOU/cs363/Week 3/Lab1/Clion/main.c
+C:/Users/Almania/Documents/WOU/CS363/Week 3/Lab1/CLion/guesser.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+unistd.h
+-
+sys/shm.h
+-
+sys/stat.h
+-
+
+C:/Users/Almania/Documents/WOU/CS363/Week 3/Lab1/CLion/main.c
 stdio.h
 -
 stdlib.h
@@ -16,5 +30,9 @@ string.h
 inttypes.h
 -
 errno.h
+-
+sys/shm.h
+-
+sys/stat.h
 -
 

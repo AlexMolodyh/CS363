@@ -33,19 +33,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "G:\Program Files\CLion-2017.2.2\bin\cmake\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\CLion\bin\cmake\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "G:\Program Files\CLion-2017.2.2\bin\cmake\bin\cmake.exe" -E remove -f
+RM = "C:\Program Files\CLion\bin\cmake\bin\cmake.exe" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion"
+CMAKE_SOURCE_DIR = "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion\cmake-build-debug"
+CMAKE_BINARY_DIR = "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Clion.dir/depend.make
@@ -58,16 +58,16 @@ include CMakeFiles/Clion.dir/flags.make
 
 CMakeFiles/Clion.dir/main.c.obj: CMakeFiles/Clion.dir/flags.make
 CMakeFiles/Clion.dir/main.c.obj: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Clion.dir/main.c.obj"
-	C:\MinGW\gcc-7.1.0.win32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Clion.dir\main.c.obj   -c "C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion\main.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/Clion.dir/main.c.obj"
+	G:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Clion.dir\main.c.obj   -c "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\main.c"
 
 CMakeFiles/Clion.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Clion.dir/main.c.i"
-	C:\MinGW\gcc-7.1.0.win32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion\main.c" > CMakeFiles\Clion.dir\main.c.i
+	G:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\main.c" > CMakeFiles\Clion.dir\main.c.i
 
 CMakeFiles/Clion.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Clion.dir/main.c.s"
-	C:\MinGW\gcc-7.1.0.win32\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion\main.c" -o CMakeFiles\Clion.dir\main.c.s
+	G:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\main.c" -o CMakeFiles\Clion.dir\main.c.s
 
 CMakeFiles/Clion.dir/main.c.obj.requires:
 
@@ -80,19 +80,45 @@ CMakeFiles/Clion.dir/main.c.obj.provides: CMakeFiles/Clion.dir/main.c.obj.requir
 CMakeFiles/Clion.dir/main.c.obj.provides.build: CMakeFiles/Clion.dir/main.c.obj
 
 
+CMakeFiles/Clion.dir/guesser.c.obj: CMakeFiles/Clion.dir/flags.make
+CMakeFiles/Clion.dir/guesser.c.obj: ../guesser.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/Clion.dir/guesser.c.obj"
+	G:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\Clion.dir\guesser.c.obj   -c "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\guesser.c"
+
+CMakeFiles/Clion.dir/guesser.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Clion.dir/guesser.c.i"
+	G:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\guesser.c" > CMakeFiles\Clion.dir\guesser.c.i
+
+CMakeFiles/Clion.dir/guesser.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Clion.dir/guesser.c.s"
+	G:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\guesser.c" -o CMakeFiles\Clion.dir\guesser.c.s
+
+CMakeFiles/Clion.dir/guesser.c.obj.requires:
+
+.PHONY : CMakeFiles/Clion.dir/guesser.c.obj.requires
+
+CMakeFiles/Clion.dir/guesser.c.obj.provides: CMakeFiles/Clion.dir/guesser.c.obj.requires
+	$(MAKE) -f CMakeFiles\Clion.dir\build.make CMakeFiles/Clion.dir/guesser.c.obj.provides.build
+.PHONY : CMakeFiles/Clion.dir/guesser.c.obj.provides
+
+CMakeFiles/Clion.dir/guesser.c.obj.provides.build: CMakeFiles/Clion.dir/guesser.c.obj
+
+
 # Object files for target Clion
 Clion_OBJECTS = \
-"CMakeFiles/Clion.dir/main.c.obj"
+"CMakeFiles/Clion.dir/main.c.obj" \
+"CMakeFiles/Clion.dir/guesser.c.obj"
 
 # External object files for target Clion
 Clion_EXTERNAL_OBJECTS =
 
 Clion.exe: CMakeFiles/Clion.dir/main.c.obj
+Clion.exe: CMakeFiles/Clion.dir/guesser.c.obj
 Clion.exe: CMakeFiles/Clion.dir/build.make
 Clion.exe: CMakeFiles/Clion.dir/linklibs.rsp
 Clion.exe: CMakeFiles/Clion.dir/objects1.rsp
 Clion.exe: CMakeFiles/Clion.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable Clion.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable Clion.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Clion.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -101,6 +127,7 @@ CMakeFiles/Clion.dir/build: Clion.exe
 .PHONY : CMakeFiles/Clion.dir/build
 
 CMakeFiles/Clion.dir/requires: CMakeFiles/Clion.dir/main.c.obj.requires
+CMakeFiles/Clion.dir/requires: CMakeFiles/Clion.dir/guesser.c.obj.requires
 
 .PHONY : CMakeFiles/Clion.dir/requires
 
@@ -109,6 +136,6 @@ CMakeFiles/Clion.dir/clean:
 .PHONY : CMakeFiles/Clion.dir/clean
 
 CMakeFiles/Clion.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion" "C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion" "C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion\cmake-build-debug" "C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion\cmake-build-debug" "C:\Users\Almania\Documents\WOU\cs363\Week 3\Lab1\Clion\cmake-build-debug\CMakeFiles\Clion.dir\DependInfo.cmake" --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion" "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion" "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\cmake-build-debug" "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\cmake-build-debug" "C:\Users\Almania\Documents\WOU\CS363\Week 3\Lab1\CLion\cmake-build-debug\CMakeFiles\Clion.dir\DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/Clion.dir/depend
 
