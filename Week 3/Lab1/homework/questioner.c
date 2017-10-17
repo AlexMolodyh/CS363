@@ -19,7 +19,7 @@ int getInput(char *inputBuffer, int bufferLength);
 int main()
 {
     FILE *pFile;
-    char fileName[200] = "C:\\Users\\Almania\\Documents\\WOU\\cs363\\Week 3\\Lab1\\Clion\\answers.txt";
+    char fileName[20] = "answers.txt";
 
     //a pointer to store the user name
     char *pUserName = malloc(10);
