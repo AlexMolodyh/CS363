@@ -10,14 +10,45 @@
 #include <string.h>
 #include <inttypes.h>
 #include <errno.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 int subStrIndex(char *pSub, char *pStr);
-char* getUserInfo(char *pUser, char *pStr);
+char *getUserInfo(char *pUser, char *pStr);
 int lineLength(int index, char *pStr);
 int getInput(char *inputBuffer, int bufferLength);
 
-int main()
+/* Read characters from the pipe and echo them to stdout. */
+void read_from_pipe(int file, char *answer)
 {
+    FILE *stream;
+    int c, i = 0;
+    stream = fdopen(file, "r");
+    while ((c = fgetc(stream)) != EOF)
+    {
+        answer[i] = c;
+        i = i + 1;
+    }
+    fclose(stream);
+}
+
+/* Write some random text to the pipe. */
+void write_to_pipe(int file, char *question)
+{
+    FILE *stream;
+    stream = fdopen(file, "w");
+    fprintf(stream, "Question %s\n", question);
+    fclose(stream);
+}
+
+int main(void)
+{
+    pid_t pid;
+    int mypipe[2];
+    int i = 0;
+    char *pGuesser = malloc(50);
+    /////////////////////////////////////////////////////
+
     FILE *pFile;
     char fileName[20] = "answers.txt";
 
@@ -35,7 +66,8 @@ int main()
 
     /*opening the file*/
     pFile = fopen(fileName, "r");
-    if (pFile == NULL) {
+    if (pFile == NULL)
+    {
         printf("Couldn't open the file %s.", fileName);
         exit(0);
     }
@@ -45,61 +77,98 @@ int main()
     int fileSize = ftell(pFile);
     rewind(pFile);
 
-    char fileC = fgetc(pFile);//a single char from the file
-    char *pFileStr = malloc(fileSize);//the file content will be stored in this string
+    char fileC = fgetc(pFile);         //a single char from the file
+    char *pFileStr = malloc(fileSize); //the file content will be stored in this string
     int index = 0;
     //append all of the file characters to the string
-    while (fileC != EOF) {
+    while (fileC != EOF)
+    {
         pFileStr[index] = fileC;
         index = index + 1;
         fileC = fgetc(pFile);
     }
     fclose(pFile);
 
-    //make sure user is not inputting large user names
-    printf("What is your name? ");
-    while(getInput(pUserName, 10) == -1)
+    printf("Before executing process\n");
+
+    /* Create the pipe. */
+    if (pipe(mypipe))
     {
-        fputs("The input is too long try again!", stdout);
+        fprintf(stderr, "Pipe failed.\n");
+        return EXIT_FAILURE;
     }
 
-    //make sure user isn't inputting numbers that are too large
-    printf("What is the magic number %s? ", pUserName);
-    scanf(" %d", pUserGuessNumber);
-    /*while(getInput(pUserGuessNumber, 10) == -1)
-    {
-        fputs("The number is too large, 10 digits max", stdout);
-    }*/
+    /* Create the child process. */
+    pid = fork();
 
-    //if the user is in the file, then set the magic number to be from the file
-    int userNameIndex = subStrIndex(pUserName, pFileStr);
-    if(userNameIndex > -1)
+    if (pid == (pid_t)0)
     {
-        magicNumber = strtoumax(getUserInfo(pUserName, pFileStr), NULL, 10);
-    }
+        //make sure user is not inputting large user names
+        printf("What is your name? ");
+        while (getInput(pUserName, 10) == -1)
+        {
+            fputs("The input is too long try again!", stdout);
+        }
 
-    //if we couldn't get the magic number from the file then we set it back to the default
-    if(magicNumber == UINTMAX_MAX && errno == ERANGE)
-    {
-        magicNumber = defaultNumber;
+        /* This is the child process.
+                 Close other end first. */
+        close(mypipe[1]);
+        printf("In child process\n");
+        read_from_pipe(mypipe[0], pGuesser);
+
+        //make sure user isn't inputting numbers that are too large
+        printf("What is the magic number %s? ", pUserName);
+        scanf(" %d", pUserGuessNumber);
+        /*while(getInput(pUserGuessNumber, 10) == -1)
+            {
+                fputs("The number is too large, 10 digits max", stdout);
+            }*/
+
+        //if the user is in the file, then set the magic number to be from the file
+        int userNameIndex = subStrIndex(pUserName, pFileStr);
+        if (userNameIndex > -1)
+        {
+            magicNumber = strtoumax(getUserInfo(pUserName, pFileStr), NULL, 10);
+        }
+
+        //if we couldn't get the magic number from the file then we set it back to the default
+        if (magicNumber == UINTMAX_MAX && errno == ERANGE)
+        {
+            magicNumber = defaultNumber;
+        }
+        if (magicNumber > *pUserGuessNumber)
+            printf("TOO LOW\n");
+        else if (magicNumber < *pUserGuessNumber)
+            printf("TOO HIGH\n");
+        else
+            printf("SUCCESS\n");
     }
-    if(magicNumber > *pUserGuessNumber)
-        printf("TOO LOW\n");
-    else if(magicNumber < *pUserGuessNumber)
-        printf("TOO HIGH\n");
+    else if (pid < (pid_t)0)
+    {
+        /* The fork failed. */
+        fprintf(stderr, "Fork failed.\n");
+        return EXIT_FAILURE;
+    }
     else
-        printf("SUCCESS\n");
+    {
+        /* This is the parent process.
+                 Close other end first. */
+        close(mypipe[0]);
+        char *pAnswer = malloc(40);
+        fgets(pAnswer, 40, stdin);
+        printf("In parent process\n");
+        write_to_pipe(mypipe[1], pAnswer);
+    }
 
     return 0;
 }
-
 
 /**Checks to see if the user has input the right amount*/
 int getInput(char *inputBuffer, int bufferLength)
 {
     fgets(inputBuffer, bufferLength, stdin);
     //if the input has overwritten the \n value, then we return a -1 to indicate invalid input
-    if (inputBuffer[strlen(inputBuffer) -1] != '\n')
+    if (inputBuffer[strlen(inputBuffer) - 1] != '\n')
     {
         int overflow = 0;
         while (fgetc(stdin) != '\n')
@@ -108,15 +177,14 @@ int getInput(char *inputBuffer, int bufferLength)
         // if they input exactly (bufferLength - 1)
         // characters, there's only the \n to chop off
         if (overflow > 0)
-            return - 1;
+            return -1;
     }
-    else//otherwise everything went smoothly
+    else //otherwise everything went smoothly
     {
-        inputBuffer[strlen(inputBuffer) -1] = '\0';
+        inputBuffer[strlen(inputBuffer) - 1] = '\0';
         return 1;
     }
 }
-
 
 int subStrIndex(char *pSub, char *pStr)
 {
@@ -125,21 +193,21 @@ int subStrIndex(char *pSub, char *pStr)
     int subCur = 0;
     int newSubLen = 0;
 
-    for(i; i < strlen(pStr); i++)
+    for (i; i < strlen(pStr); i++)
     {
-        if(pSub[subCur] == pStr[i])
+        if (pSub[subCur] == pStr[i])
         {
             subStart = i;
             int j = subCur;
             int subLength = strlen(pSub);
-            for(j; j < subLength; j++)
+            for (j; j < subLength; j++)
             {
-                if(pSub[j] == pStr[j])
+                if (pSub[j] == pStr[j])
                 {
                     newSubLen = newSubLen + 1;
                 }
             }
-            if(newSubLen == subLength)
+            if (newSubLen == subLength)
                 return subStart;
         }
     }
@@ -152,9 +220,9 @@ int lineLength(int index, char *pStr)
     int i = index;
     int returnLength = 0;
     int newLine = 10;
-    for(i; i < strLength; i++)
+    for (i; i < strLength; i++)
     {
-        if(pStr[i] == newLine)
+        if (pStr[i] == newLine)
             return returnLength;
         else
             returnLength = returnLength + 1;
@@ -162,8 +230,7 @@ int lineLength(int index, char *pStr)
     return returnLength;
 }
 
-
-char* getUserInfo(char *pUser, char *pStr)
+char *getUserInfo(char *pUser, char *pStr)
 {
     char *pNumber = malloc(30);
     int i = subStrIndex(pUser, pStr);
@@ -173,14 +240,14 @@ char* getUserInfo(char *pUser, char *pStr)
     int tab = 9;
     int space = 32;
 
-    while(pStr[i] != tab && pStr[i] != space)
+    while (pStr[i] != tab && pStr[i] != space)
     {
         i = i + 1;
         tempIndex = tempIndex + 1;
     }
     i = i + 1;
     tempIndex = 0;
-    for(i; i < strLen; i++)
+    for (i; i < strLen; i++)
     {
         pNumber[tempIndex] = pStr[i];
         tempIndex = tempIndex + 1;
@@ -189,19 +256,3 @@ char* getUserInfo(char *pUser, char *pStr)
 
     return pNumber;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
