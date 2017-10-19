@@ -1,3 +1,0 @@
-ToolSet: w64 5.0@C:\MinGW\gcc-7.1.0.win32
-Options: 
-CMake: 3.8.2@G:\Program Files\CLion-2017.2.2\bin\cmake\bin\cmake.exe
