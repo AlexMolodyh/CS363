@@ -22,7 +22,7 @@ int main()
     char fileName[20] = "answers.txt";
 
     /*a pointer to store the user name*/
-    char *pUserName = malloc(10);
+    char pUserName[20];
 
     int defaultNumber = 12345;
 
@@ -31,7 +31,7 @@ int main()
 
     /*we only allocate 30 bytes for the user guess since it doesn't need to be that large
       if the user enters a number any larger than that, we will terminate the program*/
-    int *pUserGuessNumber = malloc(sizeof(int) * 30);
+    int *pUserGuessNumber = malloc(sizeof(int) * 1);
 
     /*opening the file*/
     pFile = fopen(fileName, "r");
@@ -58,10 +58,11 @@ int main()
 
     /*make sure user is not inputting large user names*/
     printf("What is your name? ");
-    while(getInput(pUserName, 10) == -1)
+    scanf("%s", pUserName);
+    /*while(getInput(pUserName, 10) == -1)
     {
         fputs("The input is too long try again!", stdout);
-    }
+    }*/
 
     /*make sure user isn't inputting numbers that are too large*/
     printf("What is the magic number %s? ", pUserName);
