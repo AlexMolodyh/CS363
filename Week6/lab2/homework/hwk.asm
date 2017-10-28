@@ -1,14 +1,12 @@
-%include "io.inc"
-
 section .data
     mes db "Hello there", 0
 
 section .text
-global CMAIN
-CMAIN:
+global _start
+_start:
     ;write your code here
     xor eax, eax
-    mov eax, 4
+    mov eax, 24
     mov ebx, 1
     mov ecx, mes
     mov edx, 12
