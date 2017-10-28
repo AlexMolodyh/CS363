@@ -5,7 +5,10 @@ _start:
     xor ecx, ecx
     mul ecx
     push ecx
-    push 0x68732f
+    push 0x00000000
+    push 0x44495524
+    push 0x6f
+    push 0x6863652f
     push 0x6e69622f
     mov ebx, esp
     mov eax, 11
