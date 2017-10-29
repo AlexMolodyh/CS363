@@ -11,7 +11,5 @@
 
 void main()
 {
-	char *exec = {"/bin//echo", "$UID", 0};
-	execve(exec[0], &exec[1], NULL);
-	int i = 0;
+	execve("/usr/bin/id", " -u", NULL);
 }
