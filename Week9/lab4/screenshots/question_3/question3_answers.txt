@@ -1,5 +1,5 @@
 OS system on each alive computer:
 	1. OS is Linux 3.x (It's a modem so no specific os)
-	2. No exact OS because it's a printer
-	3. Netgear router so no exact os could be determined
-	4. OS is Windows 10 Pro but nmap can't seem to find it. 
+	2. Linux; Device: WAP; CPE: cpe:/h:linksys:wag354g, cpe:/o:linux:linux_kernel:3.10.20-rt14-cavium-octeon
+	3. Linux; Device: printer; CPE: cpe:/h:epson:wf-2540, cpe:/o:linux:linux_kernel, cpe:/h:epson:wf-2650
+	4. OS is Windows 10 Pro. 
