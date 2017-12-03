@@ -1,0 +1,5 @@
+Different port scanns were:
+	1. Default nmap port scan: 		nmap 192.168.1.0/24
+	2. nmap port range and ip range scan: 	nmap -sV -p 1-65535 192.168.1.0/24
+	3. nmap TCP OS scan:			nmap -sS -A 192.168.1.103
+	4. nmap UDP OS scan: 			nmap -sU -A 192.168.1.103

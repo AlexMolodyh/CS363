@@ -1,0 +1,17 @@
+open TCP and UDP ports.
+	TCP port #'s:
+		22  -> open
+		135 -> open
+		139 -> open
+		443 -> open
+		445 -> open
+		902 -> open
+		912 -> open
+	UDP port #'s:
+		137  -> open
+		138  -> open
+		1900 -> open
+		4500 -> open
+		5050 -> open
+		5353 -> open
+		5355 -> open
